@@ -32,16 +32,13 @@ st.sidebar.write("---")
 
 # ==================== 🏛️ プロジェクト0：総合表紙ページ（★縦横フルサイズ大迫力版！） ====================
 if progetto_scelto == "• Modulo 0: Benvenuti al Terra Viva Lab":
-    home_dir = os.path.expanduser('~')
-    target_project_dir = os.path.join(home_dir, 'Project rose')
-
-    img_profile_path = os.path.join(target_project_dir, 'campo_kaori_profile.jpg')
+    img_profile_path = 'campo_kaori_profile.jpg'
 
     # 🎯 4:3の写真を画面いっぱいに表示し、最後に美しい区切り線を引く正しいコードです！
     if os.path.exists(img_profile_path):
         st.image(Image.open(img_profile_path), use_container_width=True, output_format="JPEG")
     else:
-        st.warning(f"Immagine 'campo_kaori_profile.jpg' non trovata in {target_project_dir}.")
+        st.warning(f"Immagine 'campo_kaori_profile.jpg' non trovata.")
 
     st.write("---")
 
