@@ -820,16 +820,16 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
 """)
     st.write("---")
 
-    # 💡 バラの csv_data_path と絶対に混ざらないよう、牛のフン専用のあだ名に完全独立させます！
-    letame_csv_file = 'kaori_rose_health.csv'
+    # 💡 ターゲットである kaori_rose_health.csv への地図（通り道）をここで定義します！
+    csv_data_path = 'kaori_rose_health.csv'
 
     # 📝 鈴木カオリ様ご提案の新部屋：薔薇の部屋と完全に一致させた美しい歴史レジスタ！
     st.write("")
     st.subheader("📝 Registro delle Note di Campo (Field Notes & Eventi)")
-    if os.path.exists(letame_csv_file):
+    if os.path.exists(csv_data_path):
         try:
             # 大元のCSVを安全に読み込みます
-            df_letame = pd.read_csv(letame_csv_file)
+            df_letame = pd.read_csv(csv_data_path)
             
             # 空白のメモ行（notesが空の行）を非表示にして、カオリ様の魂の記述だけを抽出します
             df_letame_notes = df_letame.dropna(subset=['notes']).copy()
@@ -857,22 +857,25 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
     else:
         st.info("📊 Registro note in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
 
-    # 🎯🎯【完全大復活】カオリさんの10列の原本CSVを読み込んで、ここにデータ履歴テーブルを表示！
+    # 💡 ターゲットである kaori_rose_health.csv への地図（通り道）をここで定義します！
+    csv_data_path = 'kaori_rose_health.csv'
+
+    # 🎯🎯【完全大復活】カオリさんの data.csv を読み込んで、ここにデータ履歴テーブルを表示！
     st.write("")
     st.subheader("📋 Registro Storico Completo dei Dati CSV (Full Dataset - Letame DX)")
-    if os.path.exists(letame_csv_file):
+    if os.path.exists(csv_data_path):
         try:
             # 🧼 1行目の名前が裏でどう壊されていようが、完全に無視して強制リセットします
-            df_letame = pd.read_csv(letame_csv_file, header=0)
+            df_letame = pd.read_csv(csv_data_path, header=0)
             
-            # カオリ様のCSV原本の10個の列の真真実の並びに、名前を上から100%強制同期させます
+            # カオリ様のCSV原本の10個の列の真実の並びに、名前を上から100%強制同期させます
             df_letame.columns = [
                 'timestamp', 'temp_Main', 'temp_banana', 'ambient_temp', 
                 'moisture_score', 'folder_path', 'notes', 'temp_fungo', 
                 'Super_Mix', 'watered'
             ]
 
-            # 👑 鈴木カオリ様ご指定の【絶対の神順・指定席席順】！folder_pathは完全引き算でパージ！
+            # 👑 鈴木カオリ様ご指定 of 【絶対の神順・指定席席順】！folder_pathは完全引き算でパージ！
             colonne_ordinate = [
                 'timestamp', 'ambient_temp', 'Super_Mix', 'temp_Main',
                 'temp_banana', 'temp_fungo', 'moisture_score', 'watered', 'notes'
@@ -894,8 +897,6 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
             st.error(f"Errore nel caricamento del file CSV: {e}")
     else:
         st.info("📊 Registro dati CSV in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
-
-
 
 
     # メイン画面表示②：2つの動画プレイヤーと写真を収める本（タブ）
