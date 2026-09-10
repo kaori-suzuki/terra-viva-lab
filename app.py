@@ -820,8 +820,8 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
 """)
     st.write("---")
 
-    # 💡 ターゲットである kaori_rose_health.csv への地図（通り道）をここで定義します！
-    csv_data_path = 'kaori_rose_health.csv'
+    # 💡 ターゲットである data.csv への地図（通り道）をここで定義します！
+    csv_data_path = os.path.join(rf_dir, 'data.csv')
 
     # 📝 鈴木カオリ様ご提案の新部屋：薔薇の部屋と完全に一致させた美しい歴史レジスタ！
     st.write("")
@@ -857,8 +857,8 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
     else:
         st.info("📊 Registro note in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
 
-    # 💡 ターゲットである kaori_rose_health.csv への地図（通り道）をここで定義します！
-    csv_data_path = 'kaori_rose_health.csv'
+    # 💡 ターゲットである data.csv への地図（通り道）をここで定義します！
+    csv_data_path = os.path.join(rf_dir, 'data.csv')
 
     # 🎯🎯【完全大復活】カオリさんの data.csv を読み込んで、ここにデータ履歴テーブルを表示！
     st.write("")
@@ -875,7 +875,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
                 'Super_Mix', 'watered'
             ]
 
-            # 👑 鈴木カオリ様ご指定 of 【絶対の神順・指定席席順】！folder_pathは完全引き算でパージ！
+            # 👑 鈴木カオリ様ご指定の【絶対の神順・指定席席順】！folder_pathは完全引き算でパージ！
             colonne_ordinate = [
                 'timestamp', 'ambient_temp', 'Super_Mix', 'temp_Main',
                 'temp_banana', 'temp_fungo', 'moisture_score', 'watered', 'notes'
@@ -897,6 +897,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
             st.error(f"Errore nel caricamento del file CSV: {e}")
     else:
         st.info("📊 Registro dati CSV in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
+
 
 
     # メイン画面表示②：2つの動画プレイヤーと写真を収める本（タブ）
