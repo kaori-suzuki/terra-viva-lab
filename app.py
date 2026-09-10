@@ -1129,6 +1129,8 @@ Sulla base dell'evidenza scientifica derivante dal 50% di perdita si ritiene che
     # 🎯【Modulo 3 データテーブルお揃い化大作戦！】Full Dataset と Date/Noteスリム版を完璧に横並びで配置します！
     st.markdown("### 📋 Registro Storico dei Dati CSV (Campo Sperimentale)")
     
+    # 💡 フォルダ名を完全消去！金庫の真横にある本物のファイル名へ直接行ってください！
+    garden_csv_path = 'Kaori_Garden_data.csv'
     # 1. ファイルが指定の場所に存在するかチェック
     if os.path.exists(garden_csv_path):
     
