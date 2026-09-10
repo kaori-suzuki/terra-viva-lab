@@ -952,27 +952,31 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
     # 写真タブ（横5列のスマートサムネイル）
     with tab_rf_photo:
         st.subheader("📷 Registro Visivo della Maturazione del Letame")
-        if os.path.exists(photo_letame_dir):
-            all_files_f = sorted([f for f in os.listdir(photo_letame_dir) if f.lower().endswith(('.jpg', '.jpeg'))])
-            if all_files_f:
-                cols_f = st.columns(5)
-                for idx, file_name in enumerate(all_files_f):
-                    with cols_f[idx % 5]:
-                        img_path_f = os.path.join(photo_letame_dir, file_name)
-                        if st.button(f"🔎 {file_name}", key=f"btn_rf_{idx}"):
-                            st.image(Image.open(img_path_f), use_container_width=True)
-                        try:
-                            img_obj = Image.open(img_path_f)
-                            w, h = img_obj.size
-                            min_dim = min(w, h)
-                            img_square = img_obj.crop(((w - min_dim) // 2, (h - min_dim) // 2, (w + min_dim) // 2, (h + min_dim) // 2))
-                            st.image(img_square, use_container_width=True)
-                        except Exception:
-                            st.image(img_path_f, use_container_width=True)
-            else:
-                st.info("Nessuna foto trovata nella cartella 'Photo_letame'.")
-        else:
-            st.warning(f"Cartella '{photo_letame_dir}' non trovata.")
+        
+        # 🎯 カオリ様がGitHubの真横にハメ込んでくれた7枚の本物の写真リストを直接定義します！
+        all_files_f = [
+            "default_1.1.1.jpg", "default_1.1.4.jpg", "default_1.2.1.jpg", 
+            "default_1.3.1.jpg", "default_1.3.2.jpg", "default_1.3.4.jpg", 
+            "default_3.7.1.jpg"
+        ]
+        
+        # 5列の美しいグリッドで自動整列させます！
+        cols_f = st.columns(5)
+        for idx, file_name in enumerate(all_files_f):
+            with cols_f[idx % 5]:
+                # 🎯 フォルダの通り道を完全パージ！金庫の真横にあるファイル名を直接読み込みます！
+                img_path_f = file_name
+                
+                if st.button(f"🔎 {file_name}", key=f"btn_rf_{idx}"):
+                    st.image(Image.open(img_path_f), use_container_width=True)
+                try:
+                    img_obj = Image.open(img_path_f)
+                    w, h = img_obj.size
+                    min_dim = min(w, h)
+                    img_square = img_obj.crop(((w - min_dim) // 2, (h - min_dim) // 2, (w + min_dim) // 2, (h + min_dim) // 2))
+                    st.image(img_square, use_container_width=True)
+                except Exception:
+                    st.image(img_path_f, use_container_width=True)
 
     st.write("---")
 
