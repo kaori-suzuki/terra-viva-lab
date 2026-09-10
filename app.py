@@ -913,6 +913,8 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
         st.markdown("### **Video 1: \"Processo di Umificazione e Inoculo Microbico Immediato\"**")
         st.markdown("##### *(Fase 1: Inoculo di consorzi microbici e trasformazione del letame fertilizzante organico vivo per l'agricoltura rigenerativa)*")
            
+        
+        
         st.video("https://drive.google.com/file/d/11rbzNwMWtzTjKY9bzZyYh2UTXHCjzWkR/view?usp=sharing")
                     
         st.write("---") # 2本の動画の間に綺麗な区切り線を入れます
