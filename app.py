@@ -858,7 +858,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
         st.info("📊 Registro note in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
 
     # 💡 ターゲットである data.csv への地図（通り道）をここで定義します！
-      csv_data_path = 'data.csv'
+    csv_data_path = 'data.csv'
 
     # 🎯🎯【完全大復活】カオリさんの data.csv を読み込んで、ここにデータ履歴テーブルを表示！
     st.write("")
