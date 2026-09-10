@@ -820,8 +820,8 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
 """)
     st.write("---")
 
-    # 💡 ターゲットである data.csv への地図（通り道）をここで定義します！
-    csv_data_path = os.path.join(rf_dir, 'data.csv')
+    # 💡 ターゲットであるファイルへの地図を、真横にある本物のファイル名へ直接同期させます！
+    csv_data_path = 'kaori_rose_health.csv'
 
     # 📝 鈴木カオリ様ご提案の新部屋：薔薇の部屋と完全に一致させた美しい歴史レジスタ！
     st.write("")
@@ -857,8 +857,8 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
     else:
         st.info("📊 Registro note in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
 
-    # 💡 ターゲットである data.csv への地図（通り道）をここで定義します！
-    csv_data_path = os.path.join(rf_dir, 'data.csv')
+    # 💡 ターゲットであるファイルへの地図を、真横にある本物のファイル名へ直接同期させます！
+    csv_data_path = 'kaori_rose_health.csv'
 
     # 🎯🎯【完全大復活】カオリさんの data.csv を読み込んで、ここにデータ履歴テーブルを表示！
     st.write("")
@@ -868,7 +868,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
             # 🧼 1行目の名前が裏でどう壊されていようが、完全に無視して強制リセットします
             df_letame = pd.read_csv(csv_data_path, header=0)
             
-            # カオリ様のCSV原本の10個の列の真実の並びに、名前を上から100%強制同期させます
+            # カオリ様のCSV原本の10個の列の真真実の並びに、名前を上から100%強制同期させます
             df_letame.columns = [
                 'timestamp', 'temp_Main', 'temp_banana', 'ambient_temp', 
                 'moisture_score', 'folder_path', 'notes', 'temp_fungo', 
@@ -892,11 +892,12 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
                 hide_index=True,
                 column_config={"notes": st.column_config.TextColumn(width="large")}
             )
-            st.success("✅ Integrità dei dati del letame verificata con successo per gli standard M&R.")
+            st.success("✅ Integrità dei dati del letame verified con successo per gli standard M&R.")
         except Exception as e:
             st.error(f"Errore nel caricamento del file CSV: {e}")
     else:
         st.info("📊 Registro dati CSV in attesa di sincronizzazione con la cartella 'Resource_Factory'.")
+
 
     # メイン画面表示②：2つの動画プレイヤーと写真を収める本（タブ）
     st.write("---")
