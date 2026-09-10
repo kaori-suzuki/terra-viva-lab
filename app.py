@@ -1085,13 +1085,11 @@ elif progetto_scelto == "• Modulo 3: Agricoltura No-Till & Approccio MRV":
     # 💡 グラフの「上」に一回り小さく上品に、ピシッと美しい中央揃えでプロトコルを配置しました！
     st.markdown("<h6 style='text-align: center;'>🕒 *Frequenza di Monitoraggio: Acquisizione dati giornaliera bi-oraria*</br>*(Mattina ore 09:30 / Pomeriggio ore 15:30)*</h6>", unsafe_allow_html=True)
 
-       garden_img_path = "kaori_garden_final_complete.png"
-    
+     garden_img_path = "kaori_garden_final_complete.png"
     if os.path.exists(garden_img_path):
         st.image(Image.open(garden_img_path), caption="Evoluzione Chronologica, Impatto Insetti e Interventi Biologici (2026)", use_container_width=True)
     else:
         st.warning(f"File grafico '{garden_img_path}' non trovato.")
-
 
     # 🎯【バグ・大げさ完全消滅！】カオリ様のリアルな行動と繋ぎ方に完璧に同期させました。
     with st.expander("🔎 Leggi l'Analisi Tecnica del Grafico: Visualizzazione delle Variabili Ambientali e Dinamiche dei Parassiti"):
