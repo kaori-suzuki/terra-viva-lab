@@ -777,13 +777,16 @@ elif progetto_scelto == "• Modulo 2: Compostaggio Digitale & Carbon Farming":
         "- **Dal Problema Ambientale alla Soluzione Sotterranea:** Soluzione concreta per mitigare la crisi climatica convertendo la biomassa in un ammendante pulito, destinato a ricostruire il legame vitale tra suolo e microbioma locale.\n"
         "- **Granulazione Spontanea e Sporulazione Finale:** Certificazione del completamento del processo attraverso la trasformazione della matrice in pellet naturale, l'assenza di odori e la transizione del *Bacillus* in spore protettive per la conservazione ottimale."
     )
-    # 🎯【お掃除完了！】カオリさん発見の犯人逮捕！elseの左端の空白を、上の if と同じ「4マス」へ真っ直ぐ揃えました！
+     # 🎯【お掃除完了！】カオリさん発見の犯人逮捕！elseの左端の空白を、上の if と同じ「4マス」へ真っ着く揃えました！
     st.subheader("📊 Grafico di Monitoraggio e Valorizzazione delle Biomasse")
+    csv_image_path = "Resource_Factory_Status_v2.png"
+    
     if os.path.exists(csv_image_path):
         st.image(Image.open(csv_image_path), caption="Stato di Maturazione e Parametri Chimico-Biologici (Arena d'Oro)", use_container_width=True)
         
     else:
         st.warning(f"File grafico '{csv_image_path}' non trovato.")
+
             
     # 💡 2. 下の虫眼鏡：グラフデータ解説（鈴木カオリ原本100%完全同期・大フィナーレ！）
     with st.expander("🔎 Leggi l'Analisi Tecnica del Grafico: Visualizzazione e Controllo della Fermentazione basata sui Dati"):
