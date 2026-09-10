@@ -912,11 +912,9 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
         # 🎥 動画1：大画面表示
         st.markdown("### **Video 1: \"Processo di Umificazione e Inoculo Microbico Immediato\"**")
         st.markdown("##### *(Fase 1: Inoculo di consorzi microbici e trasformazione del letame fertilizzante organico vivo per l'agricoltura rigenerativa)*")
-        if os.path.exists(video1_path):
-            st.video(video1_path)
-        else:
-            st.caption("Video 1 in attesa di caricamento.")
-            
+           
+        st.video("https://drive.google.com/file/d/11rbzNwMWtzTjKY9bzZyYh2UTXHCjzWkR/view?usp=sharing")
+                    
         st.write("---") # 2本の動画の間に綺麗な区切り線を入れます
         
         # 🎥 動画2：大画面表示
