@@ -593,12 +593,9 @@ if progetto_scelto == "• Modulo 1: Analisi RGB (ExG) & Rigenerazione Suolo":
         # 🎯 3. 小さな補足説明文 (#####) - ダブりを修正してスマートに配置
         st.markdown("##### *(Evidenza reale del miglioramento del suolo tramite l'apporto di Biochar (Carbonio) e ferro. [Campo Sperimentale di Kaori])*")
     
-        video_file_name = 'Rose video_2026.mp4'
-        if os.path.exists(video_file_name):
-            st.video(video_file_name)
+    # 🎯 25MBの壁を完全粉砕！YouTube限定公開サーバーからバラの本物動画を1秒で呼び出します！
+    st.video("https://youtu.be/O7ZI5o6MhZY")
 
-        else:
-            st.warning(f"Video '{video_file_name}' non trovato nella cartella principale.")
 
     # ==================== 🔭 PROSPETTIVE FUTURE E CONCLUSIONE (VERSIONE IN ITALIANO PURO) ====================
     # 🎯 カオリさんの完璧なご指定通り、動画プレイヤーのすぐ真下、ギャラリーの関数が始まる直前の位置に配置しました！
