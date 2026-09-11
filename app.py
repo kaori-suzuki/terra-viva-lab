@@ -919,7 +919,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
         # 🎥 動画2：大画面表示
         st.markdown("### **Video 2: \"Origine della Risorsa: Allevamento Estensivo e Pascolo Puro\"**")
         st.markdown("##### *(Fase 2: Origine della risorsa: ambiente di pascolo puro,completamente privo di pesticidi e fertilizzanti chimici)*")
-        st.video("https://drive.google.com/file/d/1d1t0YVjZFsmPckkV4rdUa-Y7l54yJBZy/view?usp=sharing")
+        st.video("https://youtu.be/6PAf3uQWUKY")
 
 
         # 🎯【Modulo 2 前半戦大完結！】カオリ様の並び替えご指摘を200%反映！
