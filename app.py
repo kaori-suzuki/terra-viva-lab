@@ -1203,10 +1203,7 @@ Sulla base dell'evidenza scientifica derivante dal 50% di perdita si ritiene che
     st.write("")
     
     # 動画ファイルの存在チェックと再生
-    if os.path.exists(garden_video_path):
-        st.video(garden_video_path)
-    else:
-        st.warning(f"Video '{garden_video_path}' non trovato nella cartella principale.")
+    st.video("https://youtu.be/puL0THwl5V0")
 
     # ⚠️ 【重要】動画の下にあった古い二重のCSVコードと try/except のブロックは綺麗に消去されました！
 
