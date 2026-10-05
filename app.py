@@ -1289,18 +1289,18 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（プライバシー保護・ボローニャ版） ====================
+# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全修正版） ====================
 st.write("---")
 
 # 💡 画面の一番下に、目立たない小さなパスワード入力ボックスを設置
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# 🔒 パスワードが「kaorion2026」と一致した時だけ、すべての宇宙開発メニューが出現します！
+# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙開発メニューが出現します！
 if segreto == "kaorion2026":
     st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
-    st.info("Benvenuta nel tuo laboratorio segreto, Kaori. Area protetta e connessione attiva.")
+    st.info(f"Bentornata nel tuo laboratorio segreto, Kaori. Connessione protetta e attiva.")
     
-    # 🎯 プライバシーに配慮し、ボローニャ広域からイタリア全土を選べるメニュー
+    # 🎯 プライバシーに配慮したエリア選択メニュー
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
         [
@@ -1327,7 +1327,7 @@ if segreto == "kaorion2026":
                 
                 # 📍 2. ボローニャ広域の座標に設定（プライバシー完全死守）
                 if area_scelta == "📍 Provincia di Bologna (Area di Ricerca e Ground Truth)":
-                    bbox = [11.10, 44.40, 11.50, 44.65] # ボローニャ周辺を網羅する広めの安全なボックス
+                    bbox = [11.10, 44.40, 11.50, 44.65]
                     st.success("🎯 Area di Bologna agganciata: Iniziamo a scrutare il suolo in sicurezza.")
                 elif area_scelta == "🌾 Emilia-Romagna (Carbon Farming Test)":
                     bbox = [9.20, 43.70, 12.50, 45.00]
@@ -1349,11 +1349,11 @@ if segreto == "kaorion2026":
                 if len(items) > 0:
                     latest_item = items[0] 
                     
-                    # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出
+                    # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出（※bboxを bounds_latlon に修正！）
                     data = stackstac.stack(
-                        latest_item, 
+                        [latest_item], # リストとして渡す
                         assets=["B04", "B08"], 
-                        bbox=bbox, 
+                        bounds_latlon=bbox, # 正しい引数名に修正完了！
                         epsg=4326,
                         resolution=0.001 
                     ).squeeze().compute()
@@ -1383,7 +1383,7 @@ if segreto == "kaorion2026":
                     
                     st.success(f"🌿 Mappatura completata per: {area_scelta}! I pixel verde indicano biomassa rigenerativa.")
                     cloud_cov = latest_item.properties.get('eo:cloud_cover', 0)
-                    st.info(f"☁️️ Copertura nuvolosa registrata sul satellite: {cloud_cov:.2f} %")
+                    st.info(f"☁️ Copertura nuvolosa registrata sul satellite: {cloud_cov:.2f} %")
                 else:
                     st.warning("Nessuna immagine recente con poche nuvole trovata. Prova ad ampliare i criteri o la data.")
                     
