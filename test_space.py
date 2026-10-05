@@ -23,7 +23,7 @@ if st.button("Avvia il recupero dei dati spaziali 🚀"):
             cdse_pass = st.secrets["copernicus"]["password"]
             
             # 1. 宇宙のサーバーに接続
-            connection = openeo.connect("https://copernicus.eu")
+            connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
             connection.authenticate_basic(username=cdse_user, password=cdse_pass)
             
             # ==========================================
