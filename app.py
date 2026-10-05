@@ -67,7 +67,7 @@ if progetto_scelto == "• Modulo 0: Benvenuti al Terra Viva Lab":
     """)
     st.write("---")
 
-    st.write("---")
+   
 
     # 👑 青い箱を廃止し、すっきりとした知的な「白い背景（通常文字）」に変更！
     st.markdown("### 💡 **Specifiche del Framework di Ricerca Attiva (Anno 2026)**")
@@ -1287,6 +1287,8 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "</p>", 
         unsafe_allow_html=True
     )
+
+
 
 
 # 💡 画面の下にある隠し部屋のパスワード入力ボックス
