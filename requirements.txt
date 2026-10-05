@@ -1,4 +1,6 @@
 streamlit
 matplotlib
 pandas
-openeo
+pystac-client
+planetary-computer
+rioxarray
