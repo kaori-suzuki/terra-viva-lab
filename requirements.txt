@@ -4,3 +4,4 @@ pandas
 pystac-client
 planetary-computer
 rioxarray
+stackstac
