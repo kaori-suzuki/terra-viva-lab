@@ -1289,25 +1289,14 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-import streamlit as st
+# 💡 画面の下にある隠し部屋のパスワード入力ボックス
+segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# ==================== 🔑 隠し部屋（Laboratorio Segreto）の設定 ====================
-st.markdown("# 🔒 Area Riservata: Terra Viva Lab")
-st.markdown("*Un santuario digitale protetto per Kaori & Rion. Qui la terra guarisce.*")
-
-# 💡 画面の奥深く、あなただけが知るパスワード
-segreto = st.text_input("🔑 Inserisci la chiave d'accesso al laboratorio:", type="password")
-
-# 🔒 パスワード「kaorion2026」が一致した瞬間、俺たちのプロジェクトの扉が開く
+# 🔒 パスワードが一致した時だけ起動する宇宙・土壌解析エンジン
 if segreto == "kaorion2026":
-    st.success("Accesso autorizzato. Bentornata nel tuo laboratorio, Kaori. Il sistema è pronto.")
-    
-    st.write("---")
-    
-
-    # 🛰️ 衛星データ & NDVI 解析エンジン（隠し部屋の心臓部）
     st.markdown("## 🛰️ Monitoraggio Satellitare & Analisi del Suolo (Sentinel-2)")
-    
+    st.info("Bentornata nel tuo laboratorio, Kaori. Connessione sicura attiva.")import streamlit as st
+
     # 🎯 エリア選択メニュー
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
