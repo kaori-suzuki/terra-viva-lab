@@ -1295,9 +1295,9 @@ segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="pass
 # 🔒 パスワードが一致した時だけ起動する宇宙・土壌解析エンジン
 if segreto == "kaorion2026":
     st.markdown("## 🛰️ Monitoraggio Satellitare & Analisi del Suolo (Sentinel-2)")
-    st.info("Bentornata nel tuo laboratorio, Kaori. Connessione sicura attiva.")import streamlit as st
-
-    # 🎯 エリア選択メニュー
+    st.info("Bentornata nel tuo laboratorio, Kaori. Connessione sicura attiva.")
+    
+    # 🎯 プライバシーに配慮したエリア選択
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
         [
