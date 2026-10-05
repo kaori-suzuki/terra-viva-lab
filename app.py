@@ -1355,10 +1355,13 @@ if segreto == "kaorion2026":
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI自動計算（※NEP 50エラーを完全に回避するため * 1.0 で安全に float へ変換）
-                    red = data.sel(band="B04") * 1.0
-                    nir = data.sel(band="B08") * 1.0
-                    ndvi = (nir - red) / (nir + red)
+                    # 🧮 5. NDVI自動計算（※.astype(float)でNEP 50エラーを根底から完全に回避！）
+                    red = data.sel(band="B04").astype(float)
+                    nir = data.sel(band="B08").astype(float)
+                    
+                    # ゼロ除算を安全に防ぐための保護処置
+                    denominator = nir + red
+                    ndvi = xr.where(denominator == 0, 0, (nir - red) / denominator)
                     
                     # 🎨 6. Matplotlibで緑色の健康マップをレンダリング
                     st.write("---")
@@ -1390,4 +1393,3 @@ if segreto == "kaorion2026":
 else:
     if segreto:
         st.error("Chiave errata. Questa è un'area riservata, protetta per il futuro della terra.")
-   
