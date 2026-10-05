@@ -1308,35 +1308,46 @@ if segreto == "kaorion2026":
                 # 金庫（Secrets）から安全に認証情報を取得
                 cdse_user = st.secrets["copernicus"]["user"]
                 cdse_pass = st.secrets["copernicus"]["password"]
-                
-                # 🔑 1. 宇宙のサーバーに接続（コペルニクス公式・標準OIDC自動認証版！）
+                                            
+                # 🔑 1. 宇宙のサーバーに接続
                 connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
-                connection.authenticate_oidc()
                 
-                # 📍 エリアの選択メニュー
-                st.write("---")
-                st.markdown("#### 📍 Seleziona l'Area di Monitoraggio Spaziale")
-                area_scelta = st.radio(
-                    "Scegli l'estensione geografica per il test:",
-                    [
-                        "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio", 
-                        "🌾 Emilia-Romagna (Intera Regione)", 
-                        "🇮🇹 Italia (Copertura Nazionale)"
-                    ]
-                )
+                # 🛰️ デバイスコード認証の流れを定義（Streamlit画面にURLを引っ張り出す裏技）
+                authenticator = connection.get_oidc_authenticator()
+                device_code_info = authenticator.get_device_code_info()
                 
-                if area_scelta == "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio":
-                    bbox = {"west": 11.25, "east": 11.30, "south": 44.53, "north": 44.57}
-                    st.success("🎯 Benvenuti a Calderara di Reno: Base centrale del Ground Truth.")
-                elif area_scelta == "🌾 Emilia-Romagna (Intera Regione)":
-                    bbox = {"west": 9.20, "east": 12.50, "south": 43.70, "north": 45.00}
-                    st.info("🌾 Monitoraggio Regionale: Ottimo per analizzare il Carbon Farming.")
-                elif area_scelta == "🇮🇹 Italia (Copertura Nazionale)":
-                    bbox = {"west": 6.60, "east": 18.50, "south": 35.40, "north": 47.10}
-                    st.warning("⚠️ Monitoraggio Nazionale: Richiede maggior tempo di calcolo.")
+                # 画面上に「ここをクリックしてね」という公式の案内リンクを出現させます！
+                st.warning("🔒 È richiesta l'autorizzazione di sicurezza dell'UE (Copernicus).")
+                st.markdown(f"1. Clicca sul link seguente per aprire la pagina di accesso ufficiale: **[Accedi a Copernicus CDSE]({device_code_info['verification_uri']})**")
+                st.markdown(f"2. Inserisci questo codice di sblocco nella pagina che si apre: `{device_code_info['user_code']}`")
+                
+                # KaoriさんがWebサイト側でログインを完了したら、このボタンを押すことで通信がスタートします
+                if st.button("Ho completato l'accesso sul sito! Sblocca il sistema 🔐"):
+                    authenticator.authenticate_device_code(device_code_info)
+                    
+                    # 📍 エリアの選択メニュー
+                    st.write("---")
+                    st.markdown("#### 📍 Seleziona l'Area di Monitoraggio Spaziale")
+                    area_scelta = st.radio(
+                        "Scegli l'estensione geografica per il test:",
+                        [
+                            "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio", 
+                            "🌾 Emilia-Romagna (Intera Regione)", 
+                            "🇮🇹 Italia (Copertura Nazionale)"
+                        ]
+                    )
+                    
+                    if area_scelta == "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio":
+                        bbox = {"west": 11.25, "east": 11.30, "south": 44.53, "north": 44.57}
+                        st.success("🎯 Benvenuti a Calderara di Reno: Base centrale del Ground Truth.")
+                    elif area_scelta == "🌾 Emilia-Romagna (Intera Regione)":
+                        bbox = {"west": 9.20, "east": 12.50, "south": 43.70, "north": 45.00}
+                        st.info("🌾 Monitoraggio Regionale: Ottimo per analizzare il potenziale di Carbon Farming.")
+                    elif area_scelta == "🇮🇹 Italia (Copertura Nazionale)":
+                        bbox = {"west": 6.60, "east": 18.50, "south": 35.40, "north": 47.10}
+                        st.warning("⚠️ Monitoraggio Nazionale: L'elaborazione richiede maggior tempo.")
 
-                st.success(f"✅ Connessione riuscita! Configurazione completata per: {area_scelta}")
-                st.info("Satelliti Sentinel-2 agganciati e pronti per l'estrazione delle bande NDVI.")
-                
-            except Exception as e:
-                st.error(f"Errore durante la connessione: {e}")
+                    st.success(f"✅ Connessione riuscita! Configurazione completata per: {area_scelta}")
+                    st.info("Satelliti Sentinel-2 agganciati e pronti per l'estrazione delle bande NDVI.")
+ 
+               
