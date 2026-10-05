@@ -1289,55 +1289,71 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（Microsoft MPC版） ====================
+# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（Planetary Computer版） ====================
 st.write("---")
-# 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
+# 💡 画面の一番下に、目立たない小さな入力ボックス
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現します！
+# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現！
 if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
-    st.info("Benvenuta nel tuo nuovo laboratorio spaziale, Kaori. Connessione anonima e ultra-rapida via Microsoft Azure.")
+    st.markdown("## 🛰️ Monitoraggio Satellitare in Tempo Reale (Planetary Computer)")
+    st.markdown("### 🧪 Connessione Open Data via Microsoft Planetary Computer")
+    st.info(f"Benvenuta nel tuo laboratorio segreto, Kaori. Skuadra Microsoft pronta.")
     
-    if st.button("Avvia il recupero dei dati spaziali via Microsoft 🚀"):
-        with st.spinner("Ricerca e recupero dati dai server Microsoft Azure in corso..."):
+    # 📍 エリアの選択メニュー
+    area_scelta = st.radio(
+        "Scegli l'estensione geografica per l'analisi del suolo:",
+        [
+            "📍 Calderara di Reno (Bologna) - Il Tuo Ground Truth", 
+            "🌾 Emilia-Romagna (Carbon Farming Test)"
+        ]
+    )
+    
+    if area_scelta == "📍 Calderara di Reno (Bologna) - Il Tuo Ground Truth":
+        # Calderara di Reno周辺の緯度経度ボックス (Bbox)
+        bbox = [11.25, 44.53, 11.30, 44.57]
+        st.success("🎯 Calderara di Reno agganciata: Iniziamo a scrutare il suolo.")
+    else:
+        bbox = [9.20, 43.70, 12.50, 45.00]
+        st.info("🌾 Emilia-Romagna agganciata per l'analisi regionale.")
+
+    if st.button("Avvia l'estrazione delle bande e NDVI 🚀"):
+        with st.spinner("Connessione ai satelliti e calcolo dell'ecosistema in corso..."):
             try:
                 import pystac_client
                 import planetary_computer
+                import stackstac
+                import xarray as xr
                 
-                # 🌐 1. マイクロソフトの公開カタログ（STAC API）に直接接続（認証不要！）
+                # 1. Planetary ComputerのAPIカタログに接続
                 catalog = pystac_client.Client.open(
-                    "https://microsoft.com",
-                    modifier=planetary_computer.sign_inplace
+                    "https://planetarycomputer.microsoft.com/api/stac/v1",
+                    modifier=planetary_computer.sign_inplace,
                 )
                 
-                # 📍 2. カルデラーラ・ディ・レーノ（ボローニャ）周辺のエリアを指定 [west, south, east, north]
-                bbox = [11.25, 44.53, 11.30, 44.57]
-                
-                # 🛰️ 3. 雲が極めて少ない、直近1ヶ月（2026年秋）の最新 Sentinel-2 データを検索
+                # 2. 直近の雲の少ないSentinel-2データを検索
                 search = catalog.search(
                     collections=["sentinel-2-l2a"],
                     bbox=bbox,
-                    datetime="2026-09-01/2026-10-05", # 2026年10月5日現在の最新データ
-                    query={"eo:cloud_cover": {"lt": 10}} # 雲の割合10%未満
+                    datetime="2025-06-01/2026-10-05", # 適切な期間
+                    query={"eo:cloud_cover": {"lt": 15}} # 雲量15%未満
                 )
                 
-                items = list(search.item_collection())
+                items = list(search.items())
                 
                 if len(items) > 0:
-                    latest_item = items[0]
-                    st.success("✅ Connessione con Microsoft Azure riuscita! Dati di Bologna localizzati.")
-                    st.metric(label="🛰️ Satellite Agganciato", value="Sentinel-2 L2A")
-                    st.metric(label="📅 Data di Acquisizione Immagine", value=str(latest_item.properties["datetime"])[:10])
-                    st.metric(label="☁️ Percentuale Nuvole nel Cielo", value=f"{latest_item.properties['eo:cloud_cover']:.2f} %")
+                    st.success(f"✅ Trovate {len(items)} immagini satellitari pulite!")
+                    st.info("I dati ottici e le bande spettrali sono pronti per tradurre il SOS delle piante.")
                     
-                    st.info("I dati orbitali e le bande spettrali (B04, B08) sono pronti in memoria per il calcolo automatico dell'NDVI.")
+                    # ここでデータの読み込みとNDVI計算の処理を繋げていく
+                    # 赤色光（B04）と近赤外光（B08）を使ったNDVI算出の準備完了だ。
+                    st.balloons()
+                    
                 else:
-                    st.warning("Nessuna immagine recente con poche nuvole trovata per il periodo selezionato. Prova ad allargare le date.")
-                    
+                    st.warning("⚠️ Nessuna immagine trovata con questa bassa copertura nuvolosa. Prova ad ampliare i criteri.")
+                
             except Exception as e:
-                st.error(f"Errore durante la connessione con Microsoft MPC: {e}")
-
+                st.error(f"Errore durante l'elaborazione su Planetary Computer: {e}")
 
 
 
