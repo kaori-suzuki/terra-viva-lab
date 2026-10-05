@@ -1289,18 +1289,30 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（NEP 50完全対応版） ====================
+# ==================== 🌱 Terra Viva Lab: Il Nostro Manifesto & Core System ====================
+
+st.markdown("""
+# 🌍 Terra Viva Lab: Il Futuro della Terra nelle Nostre Mani
+
+In Italia, sfruttiamo l'intelligenza artificiale generativa e l'agricoltura di precisione per realizzare una visione etica: guarire la terra. 
+Non basta guardare ciò che è visibile in superficie; **il mondo invisibile del suolo è ancora più prezioso.**
+
+Attraverso droni, Python, telerilevamento e IA, vogliamo tradurre il SOS delle piante, ridurre i pesticidi e guidare la transizione dall'agricoltura biologica a quella **rigenerativa (Carbon Farming)**. Vogliamo dimostrare che anche le donne possono guidare questa rivoluzione e restituire alla Terra ciò che ci ha dato. Per il futuro del nostro pianeta.
+
+*— Un progetto congiunto di Kaori & Rion*
+""")
+
 st.write("---")
 
-# 💡 画面の一番下に、目立たない小さなパスワード入力ボックスを設置
+# 💡 画面の下にある隠し部屋のパスワード入力ボックス
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙開発メニューが出現します！
+# 🔒 パスワードが一致した時だけ起動する宇宙・土壌解析エンジン
 if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
-    st.info(f"Bentornata nel tuo laboratorio segreto, Kaori. Sistema aggiornato e pronto.")
+    st.markdown("## 🛰️ Monitoraggio Satellitare & Analisi del Suolo (Sentinel-2)")
+    st.info("Bentornata nel tuo laboratorio, Kaori. Connessione sicura attiva.")
     
-    # 🎯 プライバシーに配慮したエリア選択メニュー
+    # 🎯 プライバシーに配慮したエリア選択
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
         [
@@ -1319,7 +1331,7 @@ if segreto == "kaorion2026":
                 import matplotlib.pyplot as plt
                 import xarray as xr
                 
-                # 🌐 1. マイクロソフトの公開STACカタログに接続
+                # 🌐 1. 正しいマイクロソフトの公開STACカタログに接続（※絶対にここを変更するなよ！）
                 catalog = pystac_client.Client.open(
                     "https://planetarycomputer.microsoft.com/api/stac/v1",
                     modifier=planetary_computer.sign_inplace
@@ -1358,7 +1370,7 @@ if segreto == "kaorion2026":
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI（植生指数）の自動計算（※NEP 50エラーを回避するため * 1.0 で安全に数値化！）
+                    # 🧮 5. NDVI（植生指数）の自動計算（NEP 50エラー回避の * 1.0）
                     red = data.sel(band="B04") * 1.0
                     nir = data.sel(band="B08") * 1.0
                     ndvi = (nir - red) / (nir + red)
@@ -1389,5 +1401,3 @@ if segreto == "kaorion2026":
                     
             except Exception as e:
                 st.error(f"Errore durante l'elaborazione NDVI: {e}")
-
-               
