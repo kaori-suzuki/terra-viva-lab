@@ -1289,57 +1289,55 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全隠し部屋） ====================
+# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（Microsoft MPC版） ====================
 st.write("---")
 # 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# 🔒 パスワードが「karion2026」と一致した時だけ、宇宙接続メニューが出現します！
+# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現します！
 if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare in Tempo Reale (Sentinel-2)")
-    st.markdown("### 🧪 Connessione Sicura con Copernicus CDSE")
-    st.info(f"Benvenuta nel tuo laboratorio segreto, Kaori. Il framework MRV è pronto.")
+    st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
+    st.info("Benvenuta nel tuo nuovo laboratorio spaziale, Kaori. Connessione anonima e ultra-rapida via Microsoft Azure.")
     
-    if st.button("Avvia il recupero dei dati spaziali 🚀"):
-        with st.spinner("Connessione con i satelliti ESA in corso..."):
+    if st.button("Avvia il recupero dei dati spaziali via Microsoft 🚀"):
+        with st.spinner("Ricerca e recupero dati dai server Microsoft Azure in corso..."):
             try:
-                import openeo
+                import pystac_client
+                import planetary_computer
                 
-                # 金庫（Secrets）から安全に認証情報を取得
-                cdse_user = st.secrets["copernicus"]["user"]
-                cdse_pass = st.secrets["copernicus"]["password"]
-                
-                # 1. 宇宙のサーバーに接続（※正しいopenEOエンドポイントに修正！）
-                connection = openeo.connect("openeo.dataspace.copernicus.eu")
-                connection.authenticate_basic(username=cdse_user, password=cdse_pass)
-                
-                # 📍 エリアの選択メニュー
-                st.write("---")
-                st.markdown("#### 📍 Seleziona l'Area di Monitoraggio Spaziale")
-                area_scelta = st.radio(
-                    "Scegli l'estensione geografica per il test:",
-                    [
-                        "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio", 
-                        "🌾 Emilia-Romagna (Intera Regione)", 
-                        "🇮🇹 Italia (Copertura Nazionale)"
-                    ]
+                # 🌐 1. マイクロソフトの公開カタログ（STAC API）に直接接続（認証不要！）
+                catalog = pystac_client.Client.open(
+                    "https://microsoft.com",
+                    modifier=planetary_computer.sign_inplace
                 )
                 
-                if area_scelta == "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio":
-                    bbox = {"west": 11.25, "east": 11.30, "south": 44.53, "north": 44.57}
-                    st.success("🎯 Benvenuti a Calderara di Reno: Base centrale del Ground Truth.")
-                elif area_scelta == "🌾 Emilia-Romagna (Intera Regione)":
-                    bbox = {"west": 9.20, "east": 12.50, "south": 43.70, "north": 45.00}
-                    st.info("🌾 Monitoraggio Regionale: Ottimo per analizzare il Carbon Farming.")
-                elif area_scelta == "🇮🇹 Italia (Copertura Nazionale)":
-                    bbox = {"west": 6.60, "east": 18.50, "south": 35.40, "north": 47.10}
-                    st.warning("⚠️ Monitoraggio Nazionale: Richiede maggior tempo di calcolo.")
-
-                st.success(f"✅ Connessione riuscita! Configurazione completata per: {area_scelta}")
-                st.info("Satelliti Sentinel-2 agganciati e pronti per l'estrazione delle bande NDVI.")
+                # 📍 2. カルデラーラ・ディ・レーノ（ボローニャ）周辺のエリアを指定 [west, south, east, north]
+                bbox = [11.25, 44.53, 11.30, 44.57]
                 
+                # 🛰️ 3. 雲が極めて少ない、直近1ヶ月（2026年秋）の最新 Sentinel-2 データを検索
+                search = catalog.search(
+                    collections=["sentinel-2-l2a"],
+                    bbox=bbox,
+                    datetime="2026-09-01/2026-10-05", # 2026年10月5日現在の最新データ
+                    query={"eo:cloud_cover": {"lt": 10}} # 雲の割合10%未満
+                )
+                
+                items = list(search.item_collection())
+                
+                if len(items) > 0:
+                    latest_item = items[0]
+                    st.success("✅ Connessione con Microsoft Azure riuscita! Dati di Bologna localizzati.")
+                    st.metric(label="🛰️ Satellite Agganciato", value="Sentinel-2 L2A")
+                    st.metric(label="📅 Data di Acquisizione Immagine", value=str(latest_item.properties["datetime"])[:10])
+                    st.metric(label="☁️ Percentuale Nuvole nel Cielo", value=f"{latest_item.properties['eo:cloud_cover']:.2f} %")
+                    
+                    st.info("I dati orbitali e le bande spettrali (B04, B08) sono pronti in memoria per il calcolo automatico dell'NDVI.")
+                else:
+                    st.warning("Nessuna immagine recente con poche nuvole trovata per il periodo selezionato. Prova ad allargare le date.")
+                    
             except Exception as e:
-                st.error(f"Errore durante la connessione: {e}")
+                st.error(f"Errore durante la connessione con Microsoft MPC: {e}")
+
 
 
 
