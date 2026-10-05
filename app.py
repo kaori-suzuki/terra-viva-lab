@@ -1390,5 +1390,4 @@ if segreto == "kaorion2026":
 else:
     if segreto:
         st.error("Chiave errata. Questa è un'area riservata, protetta per il futuro della terra.")
-    else:
-        st.info("Inserisci la chiave segreta per sbloccare il laboratorio di Kaori.")
+   
