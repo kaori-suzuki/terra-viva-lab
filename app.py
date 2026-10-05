@@ -1289,21 +1289,6 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🌱 Terra Viva Lab: Il Nostro Manifesto & Core System ====================
-
-st.markdown("""
-# 🌍 Terra Viva Lab: Il Futuro della Terra nelle Nostre Mani
-
-In Italia, sfruttiamo l'intelligenza artificiale generativa e l'agricoltura di precisione per realizzare una visione etica: guarire la terra. 
-Non basta guardare ciò che è visibile in superficie; **il mondo invisibile del suolo è ancora più prezioso.**
-
-Attraverso droni, Python, telerilevamento e IA, vogliamo tradurre il SOS delle piante, ridurre i pesticidi e guidare la transizione dall'agricoltura biologica a quella **rigenerativa (Carbon Farming)**. Vogliamo dimostrare che anche le donne possono guidare questa rivoluzione e restituire alla Terra ciò che ci ha dato. Per il futuro del nostro pianeta.
-
-*— Un progetto congiunto di Kaori & Rion*
-""")
-
-st.write("---")
-
 # 💡 画面の下にある隠し部屋のパスワード入力ボックス
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
