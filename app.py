@@ -1289,7 +1289,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全修正版） ====================
+# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（NEP 50完全対応版） ====================
 st.write("---")
 
 # 💡 画面の一番下に、目立たない小さなパスワード入力ボックスを設置
@@ -1298,7 +1298,7 @@ segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="pass
 # 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙開発メニューが出現します！
 if segreto == "kaorion2026":
     st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
-    st.info(f"Bentornata nel tuo laboratorio segreto, Kaori. Connessione protetta e attiva.")
+    st.info(f"Bentornata nel tuo laboratorio segreto, Kaori. Sistema aggiornato e pronto.")
     
     # 🎯 プライバシーに配慮したエリア選択メニュー
     area_scelta = st.radio(
@@ -1349,18 +1349,18 @@ if segreto == "kaorion2026":
                 if len(items) > 0:
                     latest_item = items[0] 
                     
-                    # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出（※bboxを bounds_latlon に修正！）
+                    # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出
                     data = stackstac.stack(
-                        [latest_item], # リストとして渡す
+                        [latest_item], 
                         assets=["B04", "B08"], 
-                        bounds_latlon=bbox, # 正しい引数名に修正完了！
+                        bounds_latlon=bbox, 
                         epsg=4326,
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI（植生指数）の自動計算
-                    red = data.sel(band="B04").astype("float32")
-                    nir = data.sel(band="B08").astype("float32")
+                    # 🧮 5. NDVI（植生指数）の自動計算（※NEP 50エラーを回避するため * 1.0 で安全に数値化！）
+                    red = data.sel(band="B04") * 1.0
+                    nir = data.sel(band="B08") * 1.0
                     ndvi = (nir - red) / (nir + red)
                     
                     # 🎨 6. Matplotlibで緑色の健康マップをレンダリング
