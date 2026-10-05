@@ -1288,44 +1288,25 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         unsafe_allow_html=True
     )
 
+    # ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全隠し部屋） ====================
+    st.write("---")
+    # 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
+    segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全隠し部屋） ====================
-st.write("---")
-# 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
-segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
-
-# 🔒 パスワードが「karion2026」と一致した時だけ、宇宙接続メニューが出現します！
-if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare in Tempo Reale (Sentinel-2)")
-    st.markdown("### 🧪 Connessione Sicura con Copernicus CDSE")
-    st.info(f"Benvenuta nel tuo laboratorio segreto, Kaori. Il framework MRV è pronto.")
+    # 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現します！
+    if segreto == "kaorion2026":
+        st.markdown("## 🛰️ Monitoraggio Satellitare in Tempo Reale (Sentinel-2)")
+        st.markdown("### 🧪 Connessione Sicura con Copernicus CDSE")
+        st.info("Ambiente di test protetto per lo sviluppo del framework MRV.")
     
-    if st.button("Avvia il recupero dei dati spaziali 🚀"):
-        with st.spinner("Connessione con i satelliti ESA in corso..."):
-            try:
-                import openeo
+        if st.button("Avvia il recupero dei dati spaziali 🚀"):
+            with st.spinner("Connessione con i satelliti ESA in corso..."):
+                try:
+                    # 🔑 1. 宇宙のサーバーに自動認証（コペルニクス公式・最新デバイスコード版）
+                    connection = openeo.connect("https://copernicus.eu")
+                    connection.authenticate_oidc_device_code() # 👈 これだけで自動でブラウザに認証画面が飛びます！
                 
-                # 金庫（Secrets）から安全に認証情報を取得
-                cdse_user = st.secrets["copernicus"]["user"]
-                cdse_pass = st.secrets["copernicus"]["password"]
-                                            
-                # 🔑 1. 宇宙のサーバーに接続
-                connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
-                
-                # 🛰️ デバイスコード認証の流れを定義（Streamlit画面にURLを引っ張り出す裏技）
-                authenticator = connection.get_oidc_authenticator()
-                device_code_info = authenticator.get_device_code_info()
-                
-                # 画面上に「ここをクリックしてね」という公式の案内リンクを出現させます！
-                st.warning("🔒 È richiesta l'autorizzazione di sicurezza dell'UE (Copernicus).")
-                st.markdown(f"1. Clicca sul link seguente per aprire la pagina di accesso ufficiale: **[Accedi a Copernicus CDSE]({device_code_info['verification_uri']})**")
-                st.markdown(f"2. Inserisci questo codice di sblocco nella pagina che si apre: `{device_code_info['user_code']}`")
-                
-                # KaoriさんがWebサイト側でログインを完了したら、このボタンを押すことで通信がスタートします
-                if st.button("Ho completato l'accesso sul sito! Sblocca il sistema 🔐"):
-                    authenticator.authenticate_device_code(device_code_info)
-                    
-                    # 📍 エリアの選択メニュー
+                    # 🎯 2. エリアの選択メニュー
                     st.write("---")
                     st.markdown("#### 📍 Seleziona l'Area di Monitoraggio Spaziale")
                     area_scelta = st.radio(
@@ -1336,7 +1317,7 @@ if segreto == "kaorion2026":
                             "🇮🇹 Italia (Copertura Nazionale)"
                         ]
                     )
-                    
+                
                     if area_scelta == "📍 Calderara di Reno (Bologna) - Ground Truth / Il Tuo Laboratorio":
                         bbox = {"west": 11.25, "east": 11.30, "south": 44.53, "north": 44.57}
                         st.success("🎯 Benvenuti a Calderara di Reno: Base centrale del Ground Truth.")
@@ -1349,9 +1330,13 @@ if segreto == "kaorion2026":
 
                     st.success(f"✅ Connessione riuscita! Configurazione completata per: {area_scelta}")
                     st.info("Satelliti Sentinel-2 agganciati e pronti per l'estrazione delle bande NDVI.")
+            
+                except Exception as e:
+                    st.error(f"Errore durante la connessione: {e}")
+
+
+
                       
-            # 🔑 この2行が下にピタッとくっついていれば、構文エラーは絶対に消えます！
-            except Exception as e:
-                st.error(f"Errore durante la connessione: {e}")
+           
 
                
