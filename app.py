@@ -1314,11 +1314,11 @@ if segreto == "kaorion2026":
                 import planetary_computer
                 import stackstac
                 import matplotlib.pyplot as plt
-                import xarray as xr
+                import numpy as np
                 
                 # 🌐 1. マイクロソフトの公開STACカタログに接続
                 catalog = pystac_client.Client.open(
-                    "https://planetarycomputer.microsoft.com/api/stac/v1",
+                    "https://microsoft.com",
                     modifier=planetary_computer.sign_inplace
                 )
                 
@@ -1347,7 +1347,7 @@ if segreto == "kaorion2026":
                     latest_item = items[0] 
                     
                     # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出
-                    data = stackstac.stack(
+                    stack = stackstac.stack(
                         [latest_item], 
                         assets=["B04", "B08"], 
                         bounds_latlon=bbox, 
@@ -1355,13 +1355,16 @@ if segreto == "kaorion2026":
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI自動計算（※.astype(float)でNEP 50エラーを根底から完全に回避！）
-                    red = data.sel(band="B04").astype(float)
-                    nir = data.sel(band="B08").astype(float)
+                    # 🧮 5. NDVI自動計算（★Xarrayを完全に離脱し、純粋なNumPy配列に強制変換することでNEP50エラーを完全根絶！）
+                    red_arr = np.array(stack.sel(band="B04").values, dtype=np.float32)
+                    nir_arr = np.array(stack.sel(band="B08").values, dtype=np.float32)
                     
-                    # ゼロ除算を安全に防ぐための保護処置
-                    denominator = nir + red
-                    ndvi = xr.where(denominator == 0, 0, (nir - red) / denominator)
+                    # ゼロ除算（分母が0になるバグ）を安全に回避する処理
+                    denominator = nir_arr + red_arr
+                    denominator[denominator == 0] = 1e-5
+                    
+                    # NDVIの純粋計算式
+                    ndvi = (nir_arr - red_arr) / denominator
                     
                     # 🎨 6. Matplotlibで緑色の健康マップをレンダリング
                     st.write("---")
@@ -1385,7 +1388,7 @@ if segreto == "kaorion2026":
                     cloud_cov = latest_item.properties.get('eo:cloud_cover', 0)
                     st.info(f"☁️ Copertura nuvolosa registrata sul satellite: {cloud_cov:.2f} %")
                 else:
-                    st.warning("Nessuna immagine recente con poche nuvole trovata. Prova ad ampliare i criteri o la data.")
+                    st.warning("Nessuna immagine recente con poche nuvole trouvata.")
                     
             except Exception as e:
                 st.error(f"Errore durante l'elaborazione NDVI: {e}")
