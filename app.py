@@ -5,7 +5,7 @@ import io
 import numpy as np
 import os
 from PIL import Image
-
+import openeo 
 # ==================== Streamlit ページ設定 ====================
 st.set_page_config(
     page_title="Piattaforma MRV - Carbon Farming",
