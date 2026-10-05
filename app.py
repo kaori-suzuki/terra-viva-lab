@@ -1349,5 +1349,9 @@ if segreto == "kaorion2026":
 
                     st.success(f"✅ Connessione riuscita! Configurazione completata per: {area_scelta}")
                     st.info("Satelliti Sentinel-2 agganciati e pronti per l'estrazione delle bande NDVI.")
- 
+                      
+            # 🔑 この2行が下にピタッとくっついていれば、構文エラーは絶対に消えます！
+            except Exception as e:
+                st.error(f"Errore durante la connessione: {e}")
+
                
