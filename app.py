@@ -1305,7 +1305,7 @@ if segreto == "kaorion2026":
             try:
                 # 🔑 1. 宇宙のサーバーに自動認証（正しいデータ専用エンドポイント！）
                 connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
-                connection.authenticate_oidc_device_code() # 👈 これで自動でブラウザに認証画面が飛びます！
+                connection.authenticate_oidc() # 👈 これで自動でブラウザに認証画面が飛びます！
                 
                 # 🎯 2. エリアの選択メニュー
                 st.write("---")
