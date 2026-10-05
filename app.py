@@ -1291,7 +1291,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
 
 # ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（完全隠し部屋） ====================
 st.write("---")
-# 💡 画面の一番下に、目立たない小さな入力ボックスを作ります（左端にくっつけます！）
+# 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
 # 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現します！
@@ -1303,11 +1303,21 @@ if segreto == "kaorion2026":
     if st.button("Avvia il recupero dei dati spaziali 🚀"):
         with st.spinner("Connessione con i satelliti ESA in corso..."):
             try:
-                # 🔑 1. 宇宙のサーバーに自動認証（正しいデータ専用エンドポイント！）
-                connection = openeo.connect("https://openeo.dataspace.copernicus.eu")
-                connection.authenticate_oidc() # 👈 これで自動でブラウザに認証画面が飛びます！
+                # 🔑 金庫（Secrets）から安全にユーザー情報を取得
+                cdse_user = st.secrets["copernicus"]["user"]
+                cdse_pass = st.secrets["copernicus"]["password"]
                 
-                # 🎯 2. エリアの選択メニュー
+                # 🌐 1. 宇宙データ専用サーバーに接続
+                connection = openeo.connect("https://copernicus.eu")
+                
+                # 🔒 【ブラウザブロック回避】金庫のパスワードを使って裏側で直接認証を完了させる最新公式コード！
+                connection.authenticate_oidc_resource_owner_password_credentials(
+                    username=cdse_user,
+                    password=cdse_pass,
+                    client_id="openeo-community-client"
+                )
+                
+                # 🎯 2. エリアの選択メニュー（認証が成功したら即座に出現します！）
                 st.write("---")
                 st.markdown("#### 📍 Seleziona l'Area di Monitoraggio Spaziale")
                 area_scelta = st.radio(
@@ -1334,6 +1344,7 @@ if segreto == "kaorion2026":
             
             except Exception as e:
                 st.error(f"Errore durante la connessione: {e}")
+
 
 
 
