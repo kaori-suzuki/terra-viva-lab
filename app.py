@@ -1289,8 +1289,6 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-
-
 # 💡 画面の下にある隠し部屋のパスワード入力ボックス
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
@@ -1318,7 +1316,7 @@ if segreto == "kaorion2026":
                 import matplotlib.pyplot as plt
                 import xarray as xr
                 
-                # 🌐 1. 正しいマイクロソフトの公開STACカタログに接続（※絶対にここを変更するなよ！）
+                # 🌐 1. 正しいマイクロソフトの公開STACカタログに接続
                 catalog = pystac_client.Client.open(
                     "https://planetarycomputer.microsoft.com/api/stac/v1",
                     modifier=planetary_computer.sign_inplace
@@ -1357,9 +1355,9 @@ if segreto == "kaorion2026":
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI（植生指数）の自動計算（NEP 50エラー回避の * 1.0）
-                    red = data.sel(band="B04") * 1.0
-                    nir = data.sel(band="B08") * 1.0
+                    # 🧮 5. NDVI（植生指数）の自動計算（※.astype(float)でNEP 50エラーを完璧に回避！）
+                    red = data.sel(band="B04").astype(float)
+                    nir = data.sel(band="B08").astype(float)
                     ndvi = (nir - red) / (nir + red)
                     
                     # 🎨 6. Matplotlibで緑色の健康マップをレンダリング
@@ -1388,3 +1386,5 @@ if segreto == "kaorion2026":
                     
             except Exception as e:
                 st.error(f"Errore durante l'elaborazione NDVI: {e}")
+
+
