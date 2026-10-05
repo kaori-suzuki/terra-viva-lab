@@ -1289,76 +1289,105 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（Planetary Computer版） ====================
+# ==================== 🕵️‍♂️ LAB SEGRETO: モニタリング実験室（Microsoft イタリア全域版） ====================
 st.write("---")
-# 💡 画面の一番下に、目立たない小さな入力ボックス
+# 💡 画面の一番下に、目立たない小さな入力ボックスを作ります
 segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
 
-# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現！
+# 🔒 パスワードが「kaorion2026」と一致した時だけ、宇宙接続メニューが出現します！
 if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare in Tempo Reale (Planetary Computer)")
-    st.markdown("### 🧪 Connessione Open Data via Microsoft Planetary Computer")
-    st.info(f"Benvenuta nel tuo laboratorio segreto, Kaori. Skuadra Microsoft pronta.")
+    st.markdown("## 🛰️ Monitoraggio Satellitare via Microsoft Planetary Computer (Sentinel-2)")
+    st.info("Benvenuta nel tuo nuovo laboratorio spaziale, Kaori. Connessione libera via Microsoft Azure.")
     
-    # 📍 エリアの選択メニュー
+    # 🎯 拡張版のエリア選択メニュー（イタリア全域を追加！）
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
         [
             "📍 Calderara di Reno (Bologna) - Il Tuo Ground Truth", 
-            "🌾 Emilia-Romagna (Carbon Farming Test)"
+            "🌾 Emilia-Romagna (Carbon Farming Test)",
+            "🇮🇹 Italia (Copertura Nazionale - Intero Paese)"
         ]
     )
     
-    if area_scelta == "📍 Calderara di Reno (Bologna) - Il Tuo Ground Truth":
-        # Calderara di Reno周辺の緯度経度ボックス (Bbox)
-        bbox = [11.25, 44.53, 11.30, 44.57]
-        st.success("🎯 Calderara di Reno agganciata: Iniziamo a scrutare il suolo.")
-    else:
-        bbox = [9.20, 43.70, 12.50, 45.00]
-        st.info("🌾 Emilia-Romagna agganciata per l'analisi regionale.")
-
-    if st.button("Avvia l'estrazione delle bande e NDVI 🚀"):
-        with st.spinner("Connessione ai satelliti e calcolo dell'ecosistema in corso..."):
+    if st.button("Avvia il recupero ed elaborazione della Mappa NDVI 🚀"):
+        with st.spinner("Estrazione delle bande spettrali e calcolo NDVI in corso..."):
             try:
+                # 🔑 カオリさんが選んだ5つの必須部品（縦のラインも100%完璧に整列！）
                 import pystac_client
                 import planetary_computer
                 import stackstac
+                import matplotlib.pyplot as plt
                 import xarray as xr
                 
-                # 1. Planetary ComputerのAPIカタログに接続
+                # 🌐 1. マイクロソフトの公開カタログに接続
                 catalog = pystac_client.Client.open(
-                    "https://planetarycomputer.microsoft.com/api/stac/v1",
-                    modifier=planetary_computer.sign_inplace,
+                    "https://microsoft.com",
+                    modifier=planetary_computer.sign_inplace
                 )
                 
-                # 2. 直近の雲の少ないSentinel-2データを検索
+                # 📍 2. エリアの座標切り替え [west, south, east, north]
+                if area_scelta == "📍 Calderara di Reno (Bologna) - Il Tuo Ground Truth":
+                    bbox = [11.25, 44.53, 11.30, 44.57]
+                    st.success("🎯 Calderara di Reno agganciata: Iniziamo a scrutare il suolo.")
+                elif area_scelta == "🌾 Emilia-Romagna (Carbon Farming Test)":
+                    bbox = [9.20, 43.70, 12.50, 45.00]
+                    st.info("🌾 Monitoraggio Regionale Emilia-Romagna attivato.")
+                elif area_scelta == "🇮🇹 Italia (Copertura Nazionale - Intero Paese)":
+                    # イタリア全土をスッポリ囲む超巨大な箱の座標
+                    bbox = [6.60, 35.40, 18.50, 47.10]
+                    st.warning("🇮🇹 Analisi Nazionale: Il calcolo dell'intera penisola richiede qualche secondo in più.")
+                
+                # 🛰️ 3. 雲が極めて少ない、直近の最新 Sentinel-2 データを検索 [Temporal Consistency]
                 search = catalog.search(
                     collections=["sentinel-2-l2a"],
                     bbox=bbox,
-                    datetime="2025-06-01/2026-10-05", # 適切な期間
-                    query={"eo:cloud_cover": {"lt": 15}} # 雲量15%未満
+                    datetime="2026-09-01/2026-10-05", # 現在（2026年秋）の最新データ
+                    query={"eo:cloud_cover": {"lt": 5}} # 雲の割合5%未満
                 )
                 
-                items = list(search.items())
+                items = list(search.item_collection())
                 
                 if len(items) > 0:
-                    st.success(f"✅ Trovate {len(items)} immagini satellitari pulite!")
-                    st.info("I dati ottici e le bande spettrali sono pronti per tradurre il SOS delle piante.")
+                    latest_item = items[0] # 一番新しくて綺麗な1枚を取得
                     
-                    # ここでデータの読み込みとNDVI計算の処理を繋げていく
-                    # 赤色光（B04）と近赤外光（B08）を使ったNDVI算出の準備完了だ。
-                    st.balloons()
+                    # 📊 4. stackstacを使って、赤色(B04)と近赤外線(B08)のバンドをメモリに軽量抽出
+                    # ※イタリア全土（大きなbbox）でもメモリがパンクしないよう、解像度(epsg)を設定して最適化します。
+                    data = stackstac.stack(
+                        latest_item, 
+                        assets=["B04", "B08"], 
+                        bbox=bbox, 
+                        epsg=4326
+                    ).squeeze().compute()
                     
+                    # 🧮 5. NDVI（植生指数）の自動計算: (近赤外 - 赤) / (近赤外 + 赤)
+                    red = data.sel(band="B04").astype("float32")
+                    nir = data.sel(band="B08").astype("float32")
+                    ndvi = (nir - red) / (nir + red)
+                    
+                    # 🎨 6. Matplotlibを使って、アグリテックプロ仕様の緑色の健康マップをレンダリング！
+                    st.write("---")
+                    st.markdown(f"### 🗺️ Mappa NDVI ({str(latest_item.properties['datetime'])[:10]})")
+                    
+                    fig, ax = plt.subplots(figsize=(10, 8))
+                    im = ax.imshow(
+                        ndvi, 
+                        cmap="RdYlGn", # 赤（土）〜黄色〜濃い緑（豊かな植物）のグラデーション
+                        vmin=-0.1, 
+                        vmax=0.9
+                    )
+                    ax.axis("off") # 周りの余計な目盛りを消す
+                    
+                    cbar = fig.colorbar(im, ax=ax, orientation="vertical", shrink=0.8)
+                    cbar.set_label("Indice NDVI (Salute della Vegetazione)")
+                    
+                    st.pyplot(fig)
+                    
+                    st.success(f"🌿 Mappatura completata per: {area_scelta}! I pixel verde scuro indicano un'alta densità di biomassa rigenerativa.")
+                    st.info(f"☁️ Copertura nuvolosa registrata sul satellite: {latest_item.properties['eo:cloud_cover']:.2f} %")
                 else:
-                    st.warning("⚠️ Nessuna immagine trovata con questa bassa copertura nuvolosa. Prova ad ampliare i criteri.")
-                
+                    st.warning("Nessuna immagine recente con poche nuvole trovata per questa estensione geografica.")
+                    
             except Exception as e:
-                st.error(f"Errore durante l'elaborazione su Planetary Computer: {e}")
-
-
-
-
-                      
-           
+                st.error(f"Errore durante l'elaborazione NDVI: {e}")
 
                
