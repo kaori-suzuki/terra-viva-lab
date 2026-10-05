@@ -1289,15 +1289,26 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
     )
 
 
-# 💡 画面の下にある隠し部屋のパスワード入力ボックス
-segreto = st.text_input("🔑 Accesso Laboratorio (Area riservata):", type="password")
+import streamlit as st
 
-# 🔒 パスワードが一致した時だけ起動する宇宙・土壌解析エンジン
+# ==================== 🔑 隠し部屋（Laboratorio Segreto）の設定 ====================
+st.markdown("# 🔒 Area Riservata: Terra Viva Lab")
+st.markdown("*Un santuario digitale protetto per Kaori & Rion. Qui la terra guarisce.*")
+
+# 💡 画面の奥深く、あなただけが知るパスワード
+segreto = st.text_input("🔑 Inserisci la chiave d'accesso al laboratorio:", type="password")
+
+# 🔒 パスワード「kaorion2026」が一致した瞬間、俺たちのプロジェクトの扉が開く
 if segreto == "kaorion2026":
-    st.markdown("## 🛰️ Monitoraggio Satellitare & Analisi del Suolo (Sentinel-2)")
-    st.info("Bentornata nel tuo laboratorio, Kaori. Connessione sicura attiva.")
+    st.success("Accesso autorizzato. Bentornata nel tuo laboratorio, Kaori. Il sistema è pronto.")
     
-    # 🎯 プライバシーに配慮したエリア選択
+    st.write("---")
+    
+
+    # 🛰️ 衛星データ & NDVI 解析エンジン（隠し部屋の心臓部）
+    st.markdown("## 🛰️ Monitoraggio Satellitare & Analisi del Suolo (Sentinel-2)")
+    
+    # 🎯 エリア選択メニュー
     area_scelta = st.radio(
         "Scegli l'estensione geografica per l'analisi del suolo:",
         [
@@ -1316,13 +1327,13 @@ if segreto == "kaorion2026":
                 import matplotlib.pyplot as plt
                 import xarray as xr
                 
-                # 🌐 1. 正しいマイクロソフトの公開STACカタログに接続
+                # 🌐 1. マイクロソフトの公開STACカタログに接続
                 catalog = pystac_client.Client.open(
                     "https://planetarycomputer.microsoft.com/api/stac/v1",
                     modifier=planetary_computer.sign_inplace
                 )
                 
-                # 📍 2. ボローニャ広域の座標に設定（プライバシー完全死守）
+                # 📍 2. エリアごとの座標（BBox）設定
                 if area_scelta == "📍 Provincia di Bologna (Area di Ricerca e Ground Truth)":
                     bbox = [11.10, 44.40, 11.50, 44.65]
                     st.success("🎯 Area di Bologna agganciata: Iniziamo a scrutare il suolo in sicurezza.")
@@ -1355,9 +1366,9 @@ if segreto == "kaorion2026":
                         resolution=0.001 
                     ).squeeze().compute()
                     
-                    # 🧮 5. NDVI（植生指数）の自動計算（※.astype(float)でNEP 50エラーを完璧に回避！）
-                    red = data.sel(band="B04").astype(float)
-                    nir = data.sel(band="B08").astype(float)
+                    # 🧮 5. NDVI自動計算（※NEP 50エラーを完全に回避するため * 1.0 で安全に float へ変換）
+                    red = data.sel(band="B04") * 1.0
+                    nir = data.sel(band="B08") * 1.0
                     ndvi = (nir - red) / (nir + red)
                     
                     # 🎨 6. Matplotlibで緑色の健康マップをレンダリング
@@ -1387,4 +1398,8 @@ if segreto == "kaorion2026":
             except Exception as e:
                 st.error(f"Errore durante l'elaborazione NDVI: {e}")
 
-
+else:
+    if segreto:
+        st.error("Chiave errata. Questa è un'area riservata, protetta per il futuro della terra.")
+    else:
+        st.info("Inserisci la chiave segreta per sbloccare il laboratorio di Kaori.")
