@@ -1309,7 +1309,14 @@ if segreto == "kaorion2026":
                 cdse_user = st.secrets["copernicus"]["user"]
                 cdse_pass = st.secrets["copernicus"]["password"]
                 
-                # 1. 宇宙のサーバーに接続（※正しいopenEOエンドポイントに修正！）
+                 # 1. 宇宙のサーバーに接続（コペルニクス公式・最新認証版！）
+                connection = openeo.connect("openeo.dataspace.copernicus.eu")
+                connection.authenticate_oidc_password(
+                    username=cdse_user, 
+                    password=cdse_pass, 
+                    client_id="openeo-community-client" # 👈これがEU公式の共通鍵です
+                )
+
                 connection = openeo.connect("openeo.dataspace.copernicus.eu")
                 connection.authenticate_basic(username=cdse_user, password=cdse_pass)
                 
