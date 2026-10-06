@@ -1347,7 +1347,7 @@ if segreto == "kaorion2026":
                     latest_item = items[0] 
                     
                     # 📊 4. odc.stacを使って安全に赤と近赤外バンドを抽出（NEP50エラーを完全根絶）
-                    res_val = 100 if area_scelta == "🇮🇹 Italia (Copertura Nazionale - Intero Paese)" else 20
+                    res_val = 300 if "Italia" in area_scelta else (60 if "Emilia-Romagna" in area_scelta else 10)
                     data = odc.stac.load([latest_item], bands=["red", "nir"], bbox=bbox, resolution=res_val)
                     
                     red_arr = data.red.values.astype(np.float32)
