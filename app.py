@@ -1312,7 +1312,7 @@ if segreto == "kaorion2026":
             try:
                 import pystac_client
                 import planetary_computer
-                import stackstac
+                import odc.stac
                 import matplotlib.pyplot as plt
                 import numpy as np
                 
@@ -1341,23 +1341,29 @@ if segreto == "kaorion2026":
                     query={"eo:cloud_cover": {"lt": 10}} 
                 )
                 
-                items = list(search.item_collection())
+                items = list(search.get_items()) # 👈 item_collectionのバグを回避
                 
                 if len(items) > 0:
                     latest_item = items[0] 
                     
-                    # 📊 4. stackstacを使って赤(B04)と近赤外(B08)のバンドを抽出
-                    stack = stackstac.stack(
-                        [latest_item], 
-                        assets=["B04", "B08"], 
-                        bounds_latlon=bbox, 
-                        epsg=4326,
-                        resolution=0.001 
-                    ).squeeze().compute()
+                    # 📊 4. odc.stacを使って安全に赤と近赤外バンドを抽出（NEP50エラーを完全根絶）
+                    res_val = 100 if area_scelta == "🇮🇹 Italia (Copertura Nazionale - Intero Paese)" else 20
+                    data = odc.stac.load([latest_item], bands=["red", "nir"], bbox=bbox, resolution=res_val)
                     
-                    # 🧮 5. NDVI自動計算（★Xarrayを完全に離脱し、純粋なNumPy配列に強制変換することでNEP50エラーを完全根絶！）
-                    red_arr = np.array(stack.sel(band="B04").values, dtype=np.float32)
-                    nir_arr = np.array(stack.sel(band="B08").values, dtype=np.float32)
+                    red_arr = data.red.values.astype(np.float32)
+                    nir_arr = data.nir.values.astype(np.float32)
+                    
+                    # 3次元の配列から時間軸を潰して純粋な2次元NumPy配列にする
+                    if len(red_arr.shape) == 3:
+                        red_arr = red_arr[0]
+                        nir_arr = nir_arr[0]
+                    
+                    # 🧮 5. NDVI自動計算（ゼロ除算をNumPyの安全な方法で回避）
+                    denominator = nir_arr + red_arr
+                    denominator = np.where(denominator == 0, np.float32(1e-5), denominator)
+                    
+                    ndvi = (nir_arr - red_arr) / denominator
+                    ndvi = np.clip(ndvi, -1.0, 1.0)
                     
                     # ゼロ除算（分母が0になるバグ）を安全に回避する処理
                     denominator = nir_arr + red_arr
