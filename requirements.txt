@@ -7,6 +7,4 @@ rioxarray
 stackstac
 odc-stac
 numpy
-pystac-client
 folium
-streamlit-folium
