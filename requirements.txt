@@ -8,3 +8,4 @@ stackstac
 odc-stac
 numpy
 folium
+streamlit-folium
