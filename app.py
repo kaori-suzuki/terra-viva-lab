@@ -1318,7 +1318,7 @@ if segreto == "kaorion2026":
                 
                 # 🌐 1. マイクロソフトの公開STACカタログに接続
                 catalog = pystac_client.Client.open(
-                    "https://microsoft.com",
+                    "https://planetarycomputer.microsoft.com/api/stac/v1",
                     modifier=planetary_computer.sign_inplace
                 )
                 
