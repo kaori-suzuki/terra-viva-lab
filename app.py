@@ -1057,7 +1057,7 @@ elif progetto_scelto == "• Modulo 3: Agricoltura No-Till & Approccio MRV":
             "biologici discreti (infestazioni e trattamenti). E l'intento più profondo, la vera essenza nel cuore di questa ricerca, "
             "risiede nella sfida scientifica e personale ('La Sfida') di dimostrare se sia possibile scardinare e superare definitivamente "
             "la dipendenza dai pesticidi e dai fertilizzanti chimici di sintesi. Tramite la gestione digitale, questo campo sperimentale "
-            "non è una mera raccolta sterile di cifre, ma una ricerca attiva ('ricerca attiva') mirata a dare una voce digitale "
+            "non è una mera raccolta sterile di cifre, ma una ricerca attiva mirata a dare una voce digitale "
             "al respiro invisibile della terra, convertendo la traiettoria di 8 mesi in metriche oggettive, reali e riproducibili "
             "per esplorare ogni potenziale di rigenerazione autonoma dell'agrosistema.\n\n"
         
