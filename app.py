@@ -1088,7 +1088,7 @@ elif progetto_scelto == "• Modulo 3: Agricoltura No-Till & Approccio MRV":
 
     garden_img_path = "kaori_garden_final_complete.png"
     if os.path.exists(garden_img_path):
-        st.image(Image.open(garden_img_path), caption="Evoluzione Chronologica, Impatto Insetti e Interventi Biologici (2026)", use_container_width=True)
+        st.image(Image.open(garden_img_path), caption="Evoluzione Cronologica, Impatto Insetti e Interventi Biologici (2026)", use_container_width=True)
     else:
         st.warning(f"File grafico '{garden_img_path}' non trovato.")
 
