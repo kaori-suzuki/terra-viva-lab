@@ -1084,7 +1084,7 @@ elif progetto_scelto == "• Modulo 3: Agricoltura No-Till & Approccio MRV":
     st.markdown("<h3 style='text-align: center;'>📊 Analisi Grafica Ecosistemica</br>Un Percorso Pratico di Rigenerazione del Suolo</h3>", unsafe_allow_html=True)
     
     # 💡 グラフの「上」に一回り小さく上品に、ピシッと美しい中央揃えでプロトコルを配置しました！
-    st.markdown("<h6 style='text-align: center;'>🕒 *Frequenza di Monitoraggio: Acquisizione dati giornaliera bi-oraria*</br>*(Mattina ore 09:30 / Pomeriggio ore 15:30)*</h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align: center;'>🕒 *Frequenza di Monitoraggio: Acquisizione dati giornaliera bi-giornaliera*</br>*(Mattina ore 09:30 / Pomeriggio ore 15:30)*</h6>", unsafe_allow_html=True)
 
     garden_img_path = "kaori_garden_final_complete.png"
     if os.path.exists(garden_img_path):
