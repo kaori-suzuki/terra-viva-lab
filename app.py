@@ -1103,7 +1103,7 @@ elif progetto_scelto == "• Modulo 3: Agricoltura No-Till & Approccio MRV":
 
 Il grafico registra una perdita selettiva esatta del 50% delle piante di zucchine a partire dal 12 maggio Questo dato non è un'anomalia casuale ma il risultato diretto di una precisa dinamica emersa sul campo legata alla gestione del sovescio polifita:
 
-1 **La Correlazione con la Metà Fiorita e il 'Banchetto Ideale' della Zucchina** Se tutto il sovescio fosse stato falciato allo stadio verde prima della fioritura interrando i fusti giovani e teneri nel suolo gli insetti dannosi non avrebbero trovato un rifugio Al contrario il mantenimento della fioritura avanzata ha creato un habitat protetto per i parassiti che hanno attaccato le zucchine più tenere trasformando l'area in un banchetto ideale per gli insetti fitofagi.
+1 **La Correlazione con la Metà Fiorita e il 'Banchetto Ideale' della Zucchina** Se tutto il sovescio fosse stato falciato allo stadio verde prima della fioritura interrando i fusti giovani e teneri nel suolo gli insetti dannosi non avrebbero trovato un rifugio. Al contrario il mantenimento della fioritura avanzata ha creato un habitat protetto per i parassiti che hanno attaccato le zucchine più tenere trasformando l'area in un banchetto ideale per gli insetti fitofagi.
 2 **Resistenza Chimica del Pomodoro (Tomatina)** Al contrario nonostante l'altissima pressione dei parassiti registrata nell'ecosistema i pomodori hanno dimostrato una risposta immunitaria eccezionale registrando una sopravvivenza del 100% grazie alla sintesi autonoma di Tomatina un alcaloide naturale che funge da potente repellente biologico contro gli attacchi parassitari.
 
 🚀 **Cambio di Strategia: Il Successo del Secondo Tentativo tramite il Binomio Bacillus e Banana**
