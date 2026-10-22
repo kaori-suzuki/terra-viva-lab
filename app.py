@@ -1118,11 +1118,11 @@ A seguito del danno iniziale il 4 giugno, è stato eseguito un secondo trapianto
 Superando le critiche temperature e la siccità dell'estate l'agrosistema non ha registrato alcun fenomeno di appassimento Ad oggi le piante superano brillantemente lo stress termico rimanendo straordinariamente vive rigogliose e in costante fruttificazione Questo fatto concreto ha guidato verso il successo strutturale di una riforma del suolo che non dipende dalla chimica.
 
 🛡️ **Linee Guida Strategiche e Piano di Azione (Ottimizzazione del Sovescio)**
-Sulla base dell'evidenza scientifica derivante dal 50% di perdita si ritiene che sia possibile compiere scelte strategiche per la prossima stagione bilanciando nutrizione ed esigenze di sequestro del carbonio:
+Sulla base dell'evidenza scientifica derivante dal 50% di perdita, si ritiene che sia possibile compiere scelte strategiche per la prossima stagione, bilanciando nutrizione ed esigenze di sequestro del carbonio:
 
-* 🌱 **Strategia della Biomassa Verde (Focalizzata sulla Produzione)** Se l'obiettivo è il trapianto immediato di colture vulnerabili come le zucchine il sovescio deve essere sfalciato rigorosamente allo stadio verde e interrato fresco per accelerare il rilascio di azoto pronto e non lasciare rifugi ai parassiti.
-* 🍂 **Strategia della Piena Fioritura (Focalizzata sul Carbon Farming)** Se l'obiettivo principale è lo stoccaggio permanente del carbonio (Carbon Sink) si lascia fiorire il sovescio per arricchire i tessuti di lignina carboniosa garantendo una stabilità strutturale del suolo a lungo termine anche a costo di posticipare il trapianto delle colture sensibili.
-* 🍅 **Consociazione Strategica e Barriere** Inserimento delle zucchine in prossimità dei pomodori per sfruttare l'effetto repellente naturale della Tomatina e implementazione di barriere fisiche protettive per le prime 3 settimane di campo.
+* 🌱 **Strategia della Biomassa Verde (Focalizzata sulla Produzione)** Se l'obiettivo è il trapianto immediato di colture vulnerabili come le zucchine, il sovescio deve essere sfalciato rigorosamente allo stadio verde e interrato fresco, per accelerare il rilascio di azoto pronto e non lasciare rifugi ai parassiti.
+* 🍂 **Strategia della Piena Fioritura (Focalizzata sul Carbon Farming)** Se l'obiettivo principale è lo stoccaggio permanente del carbonio (Carbon Sink), si lascia fiorire il sovescio per arricchire i tessuti di lignina carboniosa, garantendo una stabilità strutturale del suolo a lungo termine, anche a costo di posticipare il trapianto delle colture sensibili.
+* 🍅 **Consociazione Strategica e Barriere** Inserimento delle zucchine in prossimità dei pomodori, per sfruttare l'effetto repellente naturale della Tomatina, e implementazione di barriere fisiche protettive per le prime 3 settimane di campo.
 """)
 
     # 🎯【Modulo 3 データテーブルお揃い化大作戦！】Full Dataset と Date/Noteスリム版を完璧に横並びで配置します！
