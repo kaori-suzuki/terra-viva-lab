@@ -1247,7 +1247,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "Secondo l'iniziativa internazionale **'4 per mille' (4 ‰ Initiative)**, promossa ufficialmente dal governo francese, "
         "incrementando lo stoccaggio del carbonio nei suoli globali di appena lo 0,4% all'anno sarebbe matematicamente possibile "
         "compensare interamente l'insieme delle emissioni annuali di gas serra generate dall'umanità. "
-        "Questo numero non significa rassegnazione, ma speranza. Rendere sano il suolo che coltiviamo direttamente sul campo, "
+        "Questo numero non significa rassegnazione, ma speranza. Rendere sano il suolo che coltiviamo, direttamente sul campo "
         "davanti ai nostri occhi, non è mai un punto isolato: ogni singolo passo si connette direttamente a quel grande ciclo "
         "capace di riequilibrare l'intero pianeta e proteggere ogni forma di vita."
     )
