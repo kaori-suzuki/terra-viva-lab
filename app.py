@@ -1275,7 +1275,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "Dalla finestra del mio laboratorio, osservo ogni giorno un grande albero secolare che custodisce secoli di storia. "
         "Il mio desiderio più profondo, il vero motore di tutta questa ricerca, è sapere che quando la nostra breve esistenza sarà conclusa e lasceremo questo pianeta, **quel bellissimo albero e i suoli che nutrono delicatamente le sue radici continueranno a vivere sani, protetti e incontaminati per i prossimi 100 o 200 anni, custodi immortali della rigenerazione della Terra.**\n\n"
         
-        "Anche se il nostro inizio è stato unicamente una piccola risorsa, un contenitore nero contenente un singolo letame bovino, ogni singola linea impressa in questo sistema e ogni singolo dato registrato rappresentano un atto di restituzione, una testimonianza di profonda gratitudine, come un sussurro, verso la madre Terra che ci ospita."
+        "Anche se il nostro inizio è stato unicamente una piccola risorsa, un contenitore nero contenente un singolo cumulo di letame bovino, ogni singola linea impressa in questo sistema e ogni singolo dato registrato rappresentano un atto di restituzione, una testimonianza di profonda gratitudine, come un sussurro, verso la madre Terra che ci ospita."
     )
     # 最後の水平線
     st.write("---")
