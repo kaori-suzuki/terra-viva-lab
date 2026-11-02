@@ -1266,7 +1266,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "Pertanto, abbiamo costruito un ponte di dati che unisce in un'unica linea l'agricoltura rigenerativa tramite i droni di monitoraggio dal cielo e i sensori IoT della terra. "
         "Ciò che diventa fondamentale d'ora in avanti è la gestione di questi **'Dati di Ground Truth reali al 100%'** che uniscono il Cielo e la Terra. "
         "Solo attraverso questo approccio diventa possibile una vera MRV (Misurazione, Report e Verifica), ottenendo la validazione formale nel mercato internazionale dei crediti di carbonio. "
-        "Un motore proprietario capace di completare l'intero processo, dal calcolo dell'NDVI (Indice di Vegetazione) fino all'output della mappatura aziendale con un solo pulsante: **questo è il vero pilastro infrastrutturale digitale del 'Sistema MRV Ibrido' che intendo guidare.** "
+        "Un motore proprietario capace di completare l'intero processo, dal calcolo dell'NDVI (Indice di Vegetazione) fino all'output della mappatura aziendale con un solo pulsante: questo è il vero pilastro infrastrutturale digitale del 'Sistema MRV Ibrido' che intendo guidare. "
         "Tradurre l'agricoltura rigenerativa in una realtà sociale ed economica concreta, scalabile e sostenibile, direttamente connessa alle comunità locali: questo è il primo passo della nostra futura sfida.\n\n"
         
         "Questa tecnologia esiste per restituire una giusta e meritata ricompensa economica, sotto forma di crediti certificati, a quegli agricoltori e allevatori lungimiranti che, con il loro lavoro silenzioso, proteggono la biosfera della Terra. "
@@ -1275,7 +1275,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "Dalla finestra del mio laboratorio, osservo ogni giorno un grande albero secolare che custodisce secoli di storia. "
         "Il mio desiderio più profondo, il vero motore di tutta questa ricerca, è sapere che quando la nostra breve esistenza sarà conclusa e lasceremo questo pianeta, **quel bellissimo albero e i suoli che nutrono delicatamente le sue radici continueranno a vivere sani, protetti e incontaminati per i prossimi 100 o 200 anni, custodi immortali della rigenerazione della Terra.**\n\n"
         
-        "Anche se il nostro inizio è stato unicamente una piccola risorsa, un contenitore nero contenente un singolo cumulo di letame bovino, ogni singola linea impressa in questo sistema e ogni singolo dato registrato rappresentano un atto di restituzione, una testimonianza di profonda gratitudine, come un sussurro, verso la madre Terra che ci ospita."
+        "Anche se il nostro inizio è stato unicamente una piccola risorsa, un contenitore nero contenente un singolo cumulo di letame bovino, ogni singola linea tracciata in questo sistema e ogni singolo dato registrato rappresentano un atto di restituzione, una testimonianza di profonda gratitudine, come un sussurro, verso Madre Terra che ci ospita."
     )
     # 最後の水平線
     st.write("---")
