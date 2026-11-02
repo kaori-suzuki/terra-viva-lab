@@ -727,7 +727,7 @@ elif progetto_scelto == "• Modulo 2: Compostaggio Digitale & Carbon Farming":
             "compostaggio tramite Python, puntiamo a standardizzare un protocollo scientifico di rigenerazione del suolo, superando l'agricoltura "
             "basata sul solo intuito empirico. Ed è proprio per questo motivo che hoscelto di guidare questa complessa sfida agronomica."
             "Il mio obiettivo è dare una voce digitale a un percorso biologico invisibile, dimostrando - dati alla mano - come la tecnologia possa"
-            "valorizzare la naturale capacità di rigenerazione del suolo attraverso un metodo di compostaggio innovativo"
+            "valorizzare la naturale capacità di rigenerazione del suolo attraverso un metodo di compostaggio innovativo."
         )
 
         st.markdown("#### **2. Eccellenza del Substrato Organico: Il Valore Unico di 'Arena d'Oro'**")
