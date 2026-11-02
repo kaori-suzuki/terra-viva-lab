@@ -725,9 +725,9 @@ elif progetto_scelto == "• Modulo 2: Compostaggio Digitale & Carbon Farming":
             "preziosa biomassa viene spesso sottoutilizzata, venendo smaltita come un mero rifiuto sterile. L'obiettivo fondamentale di questo "
             "modulo è convertire questa criticità ambientale in una risorsa strategica. Attraverso la digitalizzazione del processo di "
             "compostaggio tramite Python, puntiamo a standardizzare un protocollo scientifico di rigenerazione del suolo, superando l'agricoltura "
-            "basata sul solo intuito empirico. **Ed è proprio per questo motivo, spinta dal desiderio profondo di dare una voce digitale a questo "
-            "processo invisibile e di dimostrare che la natura può rigenerarsi da sola, che ho deciso di intraprendere con immensa passione "
-            "questa complessa sfida agronomica, studiando un metodo di compostaggio totalmente rivoluzionario.**"
+            "basata sul solo intuito empirico. Ed è proprio per questo motivo che hoscelto di guidare questa complessa sfida agronomica."
+            "Il mio obiettivo è dare una voce digitale a un percorso biologico invisibile, dimostrando - dati alla mano - come la tecnologia possa"
+            "valorizzare la naturale capacità di rigenerazione del suolo attraverso un metodo di compostaggio innovativo"
         )
 
         st.markdown("#### **2. Eccellenza del Substrato Organico: Il Valore Unico di 'Arena d'Oro'**")
