@@ -991,7 +991,7 @@ A fine agosto, la completa scomparsa di cattivi odori, la transizione verso un p
             "1. **Sistema Ibrido Cielo (Drone) e Terra (Python):**  \n"
             "La mia visione futura risiede nell'introdurre una tracciabilità totale, integrando soluzioni tecnologiche avanzate dal pascolo biologico fino al compost finito. "
             "L'approccio dal cielo mappa ad alta risoluzione lo stato di salute e la capacità di stoccaggio del carbonio dei vasti pascoli incontaminati. "
-            "Contemporaneamente, l'approccio a terra viene implementato un monitoraggio digitale continuo in tempo reale tramite Python per ottimizzare accuratamente i parametri critici di fermentazione. "
+            "Contemporaneamente, come approccio a terra, viene implementato un monitoraggio digitale continuo in tempo reale tramite Python, per ottimizzare accuratamente i parametri critici di fermentazione. "
             "Inoltre, l'integrazione e l'introduzione di sensori IoT (LoRaWAN) sul campo permetteranno di evolvere questo controllo manuale verso un flusso di dati automatico continuo, "
             "al fine di garantire e rendere certa la dimostrazione del mantenimento continuo dei parametri richiesti dagli standard internazionali (EPA/WHO) di 'mantenere una temperatura superiore a 55°C per oltre 72 ore'.\n\n"
             
