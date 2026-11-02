@@ -698,7 +698,7 @@ elif progetto_scelto == "• Modulo 2: Compostaggio Digitale & Carbon Farming":
 
     # 🎯【バグ完全消滅！】星マークのペアをミリ単位で整列させ、はみ出しと不自然な太字を100%封殺しました！
     st.markdown("""
-    *   **⚙️ Tecnologia Core:** Valorizzazione e Controllo Biologico dei Sottoprodotti Agricoli tramite il Fungo selvatico *Coprinellus micaceus* e la Crusca di Riso.
+    *   **⚙️ Tecnologia Core:** Valorizzazione e Controllo Biologico dei Sottoprodotti Agricoli tramite il Fungo selvatico *Coprinellus micaceus, Bacillus,* Farina di Riso Integrale,Sovescio,Banane e Paglia.
     *   **📊 M & R (Monitoraggio e Report):** Monitoraggio digitale continuo dei parametri termici e di umidità della massa organica tramite Python.
     *   **📈 Visualizzazione & Stoccaggio:** Integrazione dei dati di fermentazione e della curva termica longitudinale con gli input biologici in un database pronto per la validazione.
     *   **🚀 Prospettiva V (Verifica):** Strutturazione dei dati storici finalizzata alla futura certificazione dei crediti di carbonio nel Carbon Farming.
