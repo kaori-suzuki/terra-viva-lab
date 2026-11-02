@@ -1266,7 +1266,7 @@ elif progetto_scelto == "• Visione MRV: L'Approccio Ibrido Cielo-Terra ed Econ
         "Pertanto, abbiamo costruito un ponte di dati che unisce in un'unica linea l'agricoltura rigenerativa tramite i droni di monitoraggio dal cielo e i sensori IoT della terra. "
         "Ciò che diventa fondamentale d'ora in avanti è la gestione di questi **'Dati di Ground Truth reali al 100%'** che uniscono il Cielo e la Terra. "
         "Solo attraverso questo approccio diventa possibile una vera MRV (Misurazione, Report e Verifica), ottenendo la validazione formale nel mercato internazionale dei crediti di carbonio. "
-        "Un motore proprietario capace di completare l'intero processo, dal calcolo dell'NDVI (Indice di Vegetazione) fino all'output della mappatura aziendale con un solo pulsante: questo è il vero pilastro infrastrutturale digitale del 'Sistema MRV Ibrido' che intendo guidare. "
+        "Il nostro focus è l'integrazione strategica tra il cloud ufficiale dell'Unione Europea e la nostra piattaforma proprietaria alimentata da codici sorgenti originali. Questo robusto ecosistema di dati rappresenta il vero pilastro infrastrutturale digitale del 'Sistema MRV Ibrido' che stiamo costruendo. "
         "Tradurre l'agricoltura rigenerativa in una realtà sociale ed economica concreta, scalabile e sostenibile, direttamente connessa alle comunità locali: questo è il primo passo della nostra futura sfida.\n\n"
         
         "Questa tecnologia esiste per restituire una giusta e meritata ricompensa economica, sotto forma di crediti certificati, a quegli agricoltori e allevatori lungimiranti che, con il loro lavoro silenzioso, proteggono la biosfera della Terra. "
